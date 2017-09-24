@@ -1,0 +1,24 @@
+// Custom task type Greeting
+class Greeting extends DefaultTask {
+    String message
+    String recipient
+    
+    @TaskAction
+    void sayGreeting() {
+        println "${message}, ${recipient}!"
+    }
+}
+
+task greeting (type: Greeting) {
+    group 'Welcome'
+    description 'Produces a world greeting'
+    message 'Greeting'
+    recipient 'World'
+}
+
+task gutenTag( type : Greeting ) {
+    group 'Welcome'
+    description 'Produces a German greeting'
+    message 'Guten Tag'
+    recipient 'Welt'
+}
