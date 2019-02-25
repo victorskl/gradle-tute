@@ -9,6 +9,7 @@ Approach
 - Maven BOM
 - Gradle Java Platform Plugin
 
+## Gradle
 
 ### REF
 
@@ -27,9 +28,63 @@ Approach
 
 
 
-### Useful commands
+### gradle commands
 
 ```
 gradle dependencyInsight --configuration testRuntimeClasspath --dependency httpclient
 ```
+
+
+## Maven Solution
+
+We can achieve this with Maven pretty much it. Try these:
+
+- Think of; these directores as seperate git repo:
+
+```
+tree -L 1 maven
+maven
+├── bom
+├── parent
+├── project1
+├── project2
+└── use
+
+5 directories, 0 files
+```
+
+- Then;
+
+```
+rm -rf ~/.m2/repository/com/test/
+
+cd maven
+tree
+
+cd bom
+mvn install
+ll ~/.m2/repository/com/test/
+ll ~/.m2/repository/com/test/bom/1.0.0
+
+cd ../parent
+mvn install
+ll ~/.m2/repository/com/test/parent/1.0.0
+
+cd ../project1
+mvn dependency:tree
+mvn help:effective-pom
+mvn install
+
+cd ../project2
+mvn install
+
+cd ../use
+mvn verify
+mvn dependency:tree
+mvn help:effective-pom
+```
+
+### Resources
+
+- https://maven.apache.org/plugins/maven-help-plugin/usage.html
 
