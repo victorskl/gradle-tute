@@ -1,0 +1,34 @@
+// hello task define all projects common behaviour
+
+// You may only construct a task once in a project, i.e. task hello
+// but you may add any number of code blocks providing additional configuration.
+
+allprojects {
+    task hello {
+        doLast { task ->
+            println "I'm $task.project.name"
+        }
+    }
+}
+
+// further configuring the existing "hello" task.
+subprojects {
+    hello {
+        doLast {
+            println "- I depend on master"
+        }
+    }
+}
+
+// add specific behavior on top of the common behavior
+project(':api').hello {
+    doLast {
+        println "- I provide API"
+    }
+}
+
+task master {
+    doLast {
+        println 'master'
+    }
+}

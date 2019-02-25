@@ -1,0 +1,9 @@
+hello.doLast {
+  println "- I provide API"
+}
+
+task api {
+    doLast {
+        println 'hello api'
+    }
+}

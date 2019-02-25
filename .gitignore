@@ -3,7 +3,7 @@ dest/
 .gradle/
 .idea/
 *.iml
-
+.gradletasknamecache
 
 ## macOS
 

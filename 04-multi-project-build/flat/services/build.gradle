@@ -1,0 +1,5 @@
+// usually prefer to put project specific behavior into the build script of the subproject
+
+hello.doLast {
+  println "- I provide services"
+}

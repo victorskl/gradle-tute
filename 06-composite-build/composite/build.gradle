@@ -1,0 +1,17 @@
+// tasks hook to aggregated projects and their subprojects, actions on their artifacts
+
+task run {
+    dependsOn gradle.includedBuild('my-app').task(':run')
+}
+
+task clean {
+    dependsOn gradle.includedBuilds*.task(':clean')
+}
+
+task build {
+    dependsOn gradle.includedBuilds*.task(':build')
+}
+
+task uploadArchives {
+    dependsOn gradle.includedBuilds*.task(':uploadArchives')
+}
