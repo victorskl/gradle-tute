@@ -1,9 +1,20 @@
-plugins {
-  // id 'org.springframework.boot' version '1.5.8.RELEASE'
-  id 'java'
+buildscript {
+    repositories {
+        mavenLocal()
+    }
+    dependencies {
+        classpath 'com.sankholin.banana:banana-plug:3.0.0-SNAPSHOT'
+    }
 }
 
-// apply plugin: 'io.spring.dependency-management'
+plugins {
+    id 'java'
+//    id 'org.springframework.boot' version '2.1.3.RELEASE'
+//    id 'com.sankholin.banana.banana-plug' version '3.0.0-SNAPSHOT'
+}
+
+//apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.sankholin.banana.banana-plug'
 
 group = 'com.sankholin.banana'
 version = '0.0.1-SNAPSHOT'
@@ -11,15 +22,13 @@ sourceCompatibility = '11'
 
 repositories { 
     jcenter()
-    mavenLocal()  
+    mavenLocal()
 }
 
 dependencies {
-    // implementation enforcedPlatform('com.sankholin.banana:banana-platform:3.0.0-SNAPSHOT')
+    implementation enforcedPlatform('com.sankholin.banana:banana-platform:3.0.0-SNAPSHOT')
 
-    // implementation 'org.springframework.boot:spring-boot-starter-validation'
-
-    // compileOnly 'org.projectlombok:lombok'
-
-    // testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    compileOnly 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

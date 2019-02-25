@@ -1,0 +1,36 @@
+plugins {
+    id 'java-gradle-plugin'
+//    id 'groovy'
+    id 'maven-publish'
+}
+
+gradlePlugin {
+    plugins {
+        bananaPlugin {
+            id = 'com.sankholin.banana.banana-plug'
+            implementationClass = 'com.sankholin.banana.plug.BananaPlug'
+        }
+    }
+}
+
+group = 'com.sankholin.banana'
+version = '3.0.0-SNAPSHOT'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+//    implementation gradleApi()
+//    implementation localGroovy()
+//    implementation 'org.codehaus.groovy:groovy-all:2.5.4'
+//    testImplementation 'org.spockframework:spock-core:1.2-groovy-2.5'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+             from components.java
+        }
+    }
+}
