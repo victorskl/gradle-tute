@@ -5,41 +5,15 @@ Goal
 - want to have some share common modules or library version to in-sync with the application which consume them
 - want to release software components independent of each other, but operate like μServices fashion
 
-Approach
-- Maven BOM
-- Gradle Java Platform Plugin
 
-## Gradle
-
-### REF
-
-- https://docs.gradle.org/current/userguide/building_java_projects.html#sec:building_java_platform
-- https://docs.gradle.org/current/userguide/java_platform_plugin.html
-- https://docs.gradle.org/current/userguide/migrating_from_maven.html#migmvn:controlling_dep_versions
-- https://docs.gradle.org/current/userguide/migrating_from_maven.html#migmvn:using_boms
-- https://docs.gradle.org/current/userguide/managing_transitive_dependencies.html#sec:bom_import
-- https://docs.gradle.org/current/userguide/publishing_maven.html
-
-
-### Resources
-
-- https://stackoverflow.com/questions/54647730/gradle-java-platform-plugin-and-platform-definition
-- https://www.baeldung.com/spring-maven-bom
-
-
-
-### gradle commands
-
-```
-gradle dependencyInsight --configuration testRuntimeClasspath --dependency httpclient
-```
-
+---
 
 ## Maven Solution
 
-We can achieve this with Maven pretty much it. Try these:
+- Maven BOM + parent POM + private artifact repository
 
-- Think of; these directores as seperate git repo:
+
+We can achieve this with Maven pretty much it. Try to think of these directores as seperate git repo:
 
 ```
 tree -L 1 maven
@@ -86,5 +60,51 @@ mvn help:effective-pom
 
 ### Resources
 
+- https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html
+- https://www.baeldung.com/spring-maven-bom
 - https://maven.apache.org/plugins/maven-help-plugin/usage.html
+
+
+---
+
+## Gradle
+
+
+### Java Platform plugin
+
+- https://docs.gradle.org/current/userguide/building_java_projects.html#sec:building_java_platform
+- https://docs.gradle.org/current/userguide/java_platform_plugin.html
+- https://docs.gradle.org/current/userguide/migrating_from_maven.html#migmvn:controlling_dep_versions
+- https://docs.gradle.org/current/userguide/migrating_from_maven.html#migmvn:using_boms
+- https://docs.gradle.org/current/userguide/managing_transitive_dependencies.html#sec:bom_import
+- https://docs.gradle.org/current/userguide/dependency_management_for_java_projects.html
+
+### Maven publishing
+
+- https://docs.gradle.org/current/userguide/publishing_maven.html
+
+### Init script
+
+- https://docs.gradle.org/current/userguide/init_scripts.html
+
+
+### Repository
+
+- https://docs.gradle.org/current/userguide/declaring_repositories.html
+- https://docs.gradle.org/current/userguide/repository_types.html
+
+
+### Custom Plugins
+
+- https://docs.gradle.org/current/userguide/custom_plugins.html
+
+
+
+### Resources
+
+- https://stackoverflow.com/questions/54647730/gradle-java-platform-plugin-and-platform-definition
+- https://stackoverflow.com/questions/15468109/gradle-parent-pom-like-feature
+- https://discuss.gradle.org/t/support-for-gradle-parent-shared-between-projects-cached-locally/488/3
+- https://discuss.gradle.org/t/can-i-publish-pom-only-artifacts-with-gradle/3760
+
 
