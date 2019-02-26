@@ -11,17 +11,28 @@ repositories {
     mavenLocal()
 }
 
-//javaPlatform {
-//    allowDependencies()
-//}
+javaPlatform {
+    allowDependencies()
+}
 
 dependencies {
-//    api enforcedPlatform('org.springframework.boot:spring-boot-dependencies:2.1.3.RELEASE')
+    // Inherent BOM or platform
+    api enforcedPlatform('org.springframework.boot:spring-boot-dependencies:2.1.3.RELEASE')
+
+    // We may also define common dependencies here, but it seems doing such way is discouraged
+    //api 'org.projectlombok:lombok'
+
     constraints {
-        api enforcedPlatform('org.springframework.boot:spring-boot-dependencies:2.1.3.RELEASE')
-        // api 'commons-httpclient:commons-httpclient:3.1'
-        // api 'org.apache.commons:commons-lang3:3.8.1'
-        // runtime 'org.postgresql:postgresql:42.2.5'
+        // Constraint the version on those who like to consume Banana platform or BOM
+        api 'com.sankholin.banana:banana-sim-core:1.1.0'
+        api 'com.sankholin.banana:banana-domain:3.0.0-SNAPSHOT'
+        api 'com.sankholin.banana:banana-service:3.0.0-SNAPSHOT'
+        api 'com.sankholin.banana:banana-utils:3.0.0-SNAPSHOT'
+
+        // It can be also some external libraries.
+        //api 'commons-httpclient:commons-httpclient:3.1'
+        //api 'org.apache.commons:commons-lang3:3.8.1'
+        //runtime 'org.postgresql:postgresql:42.2.5'
     }
 }
 

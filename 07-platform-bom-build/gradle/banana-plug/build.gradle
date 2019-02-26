@@ -1,0 +1,24 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+}
+
+group = 'com.sankholin.banana'
+version = '3.0.0-SNAPSHOT'
+
+gradlePlugin {
+    plugins {
+        bananaPlugin {
+            id = 'com.sankholin.banana.banana-plug'
+            implementationClass = 'com.sankholin.banana.plug.BananaPlug'
+        }
+    }
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
+}

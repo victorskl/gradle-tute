@@ -69,6 +69,55 @@ mvn help:effective-pom
 
 ## Gradle
 
+- Treat these directories as separate repos:
+
+```
+tree -L 1 gradle
+gradle
+├── banana-app
+├── banana-cli
+├── banana-platform
+└── banana-plug
+
+4 directories, 0 files
+```
+
+- Then; let plumb the `platform` and `plugin`
+
+```
+rm -rf ~/.m2/repository/com/sankholin/banana/
+
+cd gradle/banana-platform
+gw clean --info
+tree
+gw dependencies --info
+gw publishMavenPublicationToMavenLocal --info
+
+ll ~/.m2/repository/com/sankholin/banana/
+
+cd ../banana-plug
+gw clean --info
+tree
+gw dependencies --info
+gw publishMavenPublicationToMavenLocal --info
+
+ll ~/.m2/repository/com/sankholin/banana/
+
+```
+
+- Now; we can try test `app` for those `platform` and `plugin` settings that applied
+
+```
+cd ../banana-app
+gw clean --info
+tree
+gw dependencies --info
+gw assemble --info
+tree build
+gw hello
+```
+
+
 
 ### Java Platform plugin
 

@@ -1,7 +1,12 @@
+// Resolving Custom Plugin Repositories for plugins {} DSL - but not working! So, just use buildscript {} block
+// https://stackoverflow.com/questions/51773218/why-does-gradle-not-look-in-the-local-maven-repository-for-plugins/51775637
+// https://docs.gradle.org/current/userguide/plugins.html#sec:custom_plugin_repositories
+//
 //pluginManagement {
 //    repositories {
 //        mavenLocal()
 //        gradlePluginPortal()
 //    }
 //}
+
 rootProject.name = 'banana-app'
