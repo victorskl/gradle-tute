@@ -1,12 +1,36 @@
-// Resolving Custom Plugin Repositories for plugins {} DSL - but not working! So, just use buildscript {} block
-// https://stackoverflow.com/questions/51773218/why-does-gradle-not-look-in-the-local-maven-repository-for-plugins/51775637
-// https://docs.gradle.org/current/userguide/plugins.html#sec:custom_plugin_repositories
+// https://docs.gradle.org/current/userguide/plugins.html#sec:plugin_management
+// https://stackoverflow.com/questions/37285413/how-can-the-gradle-plugin-repository-be-changed
 //
-//pluginManagement {
-//    repositories {
-//        mavenLocal()
-//        gradlePluginPortal()
-//    }
-//}
+// NOTE: This could also be done globally at ~/.gradle/init.gradle. See above links.
+//
+// NOTE: The repoUrl property need to specify protocol handler such as 'http://repoUrl'.
+// Otherwise it will fall back to 'file://' protocol and will get:
+//   Authentication scheme 'all'(Authentication) is not supported by protocol 'file' error.
+// See
+// https://stackoverflow.com/questions/43809688/authentication-error-when-publishing-from-gradle-to-nexus
+//
+pluginManagement {
+  repositories {
+    mavenLocal()
+    gradlePluginPortal()
+    jcenter()
+    mavenCentral()
+
+    // can resolve these variables from gradle.properties
+    println repoUrl
+    println repoUser
+    println repoPass
+
+    maven {
+      url "$repoUrl/repository/maven-public/"
+      name = "Banana"
+      credentials {
+        username repoUser
+        password repoPass
+      }
+    }
+
+  }
+}
 
 rootProject.name = 'banana-app'

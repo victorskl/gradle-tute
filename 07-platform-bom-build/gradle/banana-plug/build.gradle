@@ -1,24 +1,61 @@
 plugins {
-    id 'java-gradle-plugin'
-    id 'maven-publish'
+  id 'java-gradle-plugin'
+  id 'maven-publish'
+  id 'groovy'
+  id 'com.diffplug.gradle.spotless' version '3.18.0'
 }
 
 group = 'com.sankholin.banana'
 version = '3.0.0-SNAPSHOT'
 
+repositories {
+  jcenter()
+  mavenLocal()
+}
+
 gradlePlugin {
-    plugins {
-        bananaPlugin {
-            id = 'com.sankholin.banana.banana-plug'
-            implementationClass = 'com.sankholin.banana.plug.BananaPlug'
-        }
+  plugins {
+    bananaPlugin {
+      id = 'com.sankholin.banana.banana-plug'
+      implementationClass = 'com.sankholin.banana.plug.BananaGroovyPlug' // switch here for Java impl
     }
+  }
 }
 
 publishing {
-    publications {
-        maven(MavenPublication) {
-            from components.java
-        }
+  publications {
+    maven(MavenPublication) { from components.java }
+  }
+  repositories {
+    maven {
+      def baseUrl = getProperty('repoUrl')
+      def releasesRepoUrl = "$baseUrl/repository/maven-releases/"
+      def snapshotsRepoUrl = "$baseUrl/repository/maven-snapshots/"
+      url = project.hasProperty('release') ? releasesRepoUrl : snapshotsRepoUrl
+      name = 'Banana'
+      credentials {
+        username getProperty('repoUser')
+        password getProperty('repoPass')
+      }
     }
+  }
+}
+
+spotless {
+  groovyGradle {
+    target '*.gradle'
+    greclipse()
+    indentWithSpaces(2)
+    trimTrailingWhitespace()
+    endWithNewline()
+  }
+  java { removeUnusedImports() }
+  groovy {
+    excludeJava()
+    paddedCell()
+    greclipse()
+    indentWithSpaces(2)
+    trimTrailingWhitespace()
+    endWithNewline()
+  }
 }

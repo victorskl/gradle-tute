@@ -1,45 +1,68 @@
 plugins {
-    id 'java-platform'
-    id 'maven-publish'
+  id 'java-platform'
+  id 'maven-publish'
+  id 'com.diffplug.gradle.spotless' version '3.18.0'
 }
+
+repoUrl  = getProperty('repoUrl')
+repoUser = getProperty('repoUser')
+repoPass = getProperty('repoPass')
+println 'gradle.properties: ' + repoUrl + ' ' + repoUser + ' ' + repoPass
 
 group = 'com.sankholin.banana'
 version = '3.0.0-SNAPSHOT'
 
 repositories {
-    jcenter()
-    mavenLocal()
+  jcenter()
+  mavenLocal()
 }
 
-javaPlatform {
-    allowDependencies()
-}
+javaPlatform { allowDependencies() }
 
 dependencies {
-    // Inherent BOM or platform
-    api enforcedPlatform('org.springframework.boot:spring-boot-dependencies:2.1.3.RELEASE')
+  //  Inherent Spring Boot Gradle Java Platform Plugin (aka Spring Boot BOM)
+  api enforcedPlatform('org.springframework.boot:spring-boot-dependencies:2.1.3.RELEASE')
 
-    // We may also define common dependencies here, but it seems doing such way is discouraged
-    //api 'org.projectlombok:lombok'
+  //  We may also define common dependencies here, but such usage is discouraged, use sparingly!
+  //api 'org.projectlombok:lombok'
 
-    constraints {
-        // Constraint the version on those who like to consume Banana platform or BOM
-        api 'com.sankholin.banana:banana-sim-core:1.1.0'
-        api 'com.sankholin.banana:banana-domain:3.0.0-SNAPSHOT'
-        api 'com.sankholin.banana:banana-service:3.0.0-SNAPSHOT'
-        api 'com.sankholin.banana:banana-utils:3.0.0-SNAPSHOT'
+  constraints {
+    //  Constraint the version on those who like to consume Banana platform or BOM
+    api 'com.sankholin.banana:banana-sim-core:1.1.0'
+    api 'com.sankholin.banana:banana-domain:3.0.0-SNAPSHOT'
+    api 'com.sankholin.banana:banana-service:3.0.0-SNAPSHOT'
+    api 'com.sankholin.banana:banana-utils:3.0.0-SNAPSHOT'
 
-        // It can be also some external libraries.
-        //api 'commons-httpclient:commons-httpclient:3.1'
-        //api 'org.apache.commons:commons-lang3:3.8.1'
-        //runtime 'org.postgresql:postgresql:42.2.5'
-    }
+    //  It may also involve some external libraries, but do it sparingly! follows are just e.g.
+    //api 'commons-httpclient:commons-httpclient:3.1'
+    //api 'org.apache.commons:commons-lang3:3.8.1'
+    //runtime 'org.postgresql:postgresql:42.2.5'
+  }
 }
 
 publishing {
-    publications {
-        maven(MavenPublication) {
-            from components.javaPlatform
-        }
+  publications {
+    maven(MavenPublication) { from components.javaPlatform }
+  }
+  repositories {
+    maven {
+      def releasesRepoUrl = "$repoUrl/repository/maven-releases"
+      def snapshotsRepoUrl = "$repoUrl/repository/maven-snapshots"
+      url = project.hasProperty('release') ? releasesRepoUrl : snapshotsRepoUrl
+      credentials {
+        username "$repoUser"
+        password "$repoPass"
+      }
     }
+  }
+}
+
+spotless {
+  groovyGradle {
+    target '*.gradle'
+    greclipse()
+    indentWithSpaces(2)
+    trimTrailingWhitespace()
+    endWithNewline()
+  }
 }

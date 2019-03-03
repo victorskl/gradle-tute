@@ -15,9 +15,6 @@
 - https://github.com/dougborg/gdub
 - https://www.baeldung.com/gradle
 
-### REF
-
-- https://docs.gradle.org/current/userguide/gradle_wrapper.html
 
 ### Useful commands
 

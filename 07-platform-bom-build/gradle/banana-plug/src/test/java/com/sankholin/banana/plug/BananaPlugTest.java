@@ -1,5 +1,3 @@
 package com.sankholin.banana.plug;
 
-public class BananaPlugTest {
-
-}
+public class BananaPlugTest {}

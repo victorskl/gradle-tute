@@ -3,6 +3,8 @@ package com.sankholin.banana.plug;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 
+// groovy seem to be a more natural way of writing a plugin
+// see BananaGroovyPlug.groovy
 public class BananaPlug implements Plugin<Project> {
 
   @Override
@@ -25,7 +27,7 @@ public class BananaPlug implements Plugin<Project> {
 
   private void addDependencies(Project project) {
     project.afterEvaluate(c -> {
-      //c.getDependencies().add("compileOnly", "org.projectlombok:lombok");
+      // c.getDependencies().add("compileOnly", "org.projectlombok:lombok");
     });
   }
 
