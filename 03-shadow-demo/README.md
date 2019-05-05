@@ -1,8 +1,7 @@
 Gradle Shadow plugin for Uber-JAR a.k.a executable JAR
 
-https://github.com/johnrengelman/shadow
-
-http://imperceptiblethoughts.com/shadow/
+- https://github.com/johnrengelman/shadow
+- http://imperceptiblethoughts.com/shadow/
 
 ```
 mkdir shadow-demo

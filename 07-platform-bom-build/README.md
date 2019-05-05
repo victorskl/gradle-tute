@@ -150,6 +150,10 @@ gw hello
 - https://docs.gradle.org/current/userguide/declaring_repositories.html
 - https://docs.gradle.org/current/userguide/repository_types.html
 
+### Customizing Dependency
+
+- https://docs.gradle.org/current/userguide/customizing_dependency_resolution_behavior.html
+
 ### Credentials
 
 - https://help.sonatype.com/repomanager2/maven-and-other-build-tools/gradle
@@ -173,6 +177,7 @@ gw hello
 - https://www.praqma.com/stories/gradle-plugin-bootstrap/
 - http://blog.anorakgirl.co.uk/2014/12/gradle-and-the-parent-pom/
 - https://stackoverflow.com/questions/51773218/why-does-gradle-not-look-in-the-local-maven-repository-for-plugins/51775637
+- https://stackoverflow.com/questions/37285413/how-can-the-gradle-plugin-repository-be-changed
 
 
 ### Resources
