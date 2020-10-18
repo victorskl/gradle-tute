@@ -1,7 +1,9 @@
 # gradle multi-project build
 
-1. Hierarchical (aka one root tree)
+1. Hierarchical (aka one root tree) -- i.e. _Maven multi-modules style_
 2. Flat (no tree)
+
+> Focus on `settings.gradle` file i.e. `include` Vs `includeFlat`
 
 ```
 cd hierarchical
