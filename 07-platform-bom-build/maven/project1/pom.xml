@@ -8,15 +8,14 @@
     <artifactId>parent</artifactId>
   </parent>
 
-  <groupId>com.test</groupId>
   <artifactId>project1</artifactId>
-  <version>${project1Version}</version>
+  <version>1.0.0</version>
   <packaging>jar</packaging>
  
   <dependencies>
     <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
     </dependency>
   </dependencies>
 </project>

@@ -7,10 +7,9 @@
     <version>1.0.0</version>
     <artifactId>parent</artifactId>
   </parent>
-  
-  <groupId>com.test</groupId>
+
   <artifactId>project2</artifactId>
-  <version>${project2Version}</version>
+  <version>1.0.0</version>
   <packaging>jar</packaging>
  
   <dependencies>

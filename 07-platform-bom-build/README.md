@@ -94,20 +94,18 @@ gw clean --info
 tree
 gw dependencies --info
 gw publishToMavenLocal --info
-ll ~/.m2/repository/com/sankholin/banana/
+tree ~/.m2/repository/com/sankholin/banana/
 ```
 
 - Then; let plumb the `platform` for Maven BOM style `dependenciesManagement`
 
 ```
-rm -rf ~/.m2/repository/com/sankholin/banana/
-
 cd ../banana-platform
 gw clean --info
 tree
 gw dependencies --info
 gw publishToMavenLocal --info
-ll ~/.m2/repository/com/sankholin/banana/
+tree ~/.m2/repository/com/sankholin/banana/
 ```
 
 - Now; we can try test `app` for those `platform` and `plugin` settings that applied
